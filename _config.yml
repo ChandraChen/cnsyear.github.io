@@ -5,9 +5,10 @@
 
 # Site
 title: CNSYEAR NOTE'S
-subtitle:
-description: 肩挑凡事，拳握初心
+subtitle: 肩挑凡事，拳握初心
+description: 飞翔 恐高的鸟长出了翅膀......
 author: 趙小傑~～
+avatar: /images/avatar.png
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
 date_format: '%Y-%m-%d'
@@ -152,8 +153,8 @@ menu_icons:
 
 # Schemes
 #scheme: Muse
-scheme: Mist
-#scheme: Pisces
+#scheme: Mist
+scheme: Pisces
 
 
 # ---------------------------------------------------------------
@@ -226,9 +227,9 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
-  GitHub: github
-  Twitter: twitter
-  Weibo: weibo
+  GitHub: https://github.com/cnsyear
+  # Twitter: twitter
+  Weibo: https://weibo.com/6586024564/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1
 
 
 # Sidebar Avatar
