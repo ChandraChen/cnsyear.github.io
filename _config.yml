@@ -214,8 +214,11 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
+social:
   #LinkLabel: Link
+  GitHub: https://github.com/cnsyear
+  # Twitter: twitter
+  Weibo: https://weibo.com/6586024564/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1
 
 
 # Social Links Icons
@@ -227,9 +230,9 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
-  GitHub: https://github.com/cnsyear
-  # Twitter: twitter
-  Weibo: https://weibo.com/6586024564/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1
+  GitHub: github
+  Twitter: twitter
+  Weibo: weibo
 
 
 # Sidebar Avatar
