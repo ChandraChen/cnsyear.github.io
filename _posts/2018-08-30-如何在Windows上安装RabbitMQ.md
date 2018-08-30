@@ -7,13 +7,15 @@ tags:
  - RabbitMQ
 ---
 
-
 ####  一、windows安装Erlang和RabbitMQ 
 ##### 先安装Erlang
 - Erlang/OTP 20.3下载地址：http://erlang.org/download/otp_win64_20.3.exe
 - Erlang/OTP其它版本下载地址：http://www.erlang.org/downloads
 - 配置Erlang环境变量并在path后面追加 %ERLANG_HOME%\bin 
 - erl -v回车检查是否配置成功
+
+<!-- more -->
+
 ##### 再安装RabbitMQ Server
 - RabbitMQ Server 3.7.4下载地址：
 https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.4/rabbitmq-server-3.7.4.exe
