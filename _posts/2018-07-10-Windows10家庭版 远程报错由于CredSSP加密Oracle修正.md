@@ -1,109 +1,45 @@
 ---
-published: true
-title: C++ 之迭代器与算法
-category: Program
-tags: 
-  - cpp
-  - c
-layout: post
+title: Windows10家庭版 远程报错:由于CredSSP加密Oracle修正
+description: 
+categories:
+ - Windows10
+tags:
+ - Windows10
 ---
 
+> Windows10家庭版 远程报错:由于CredSSP加密Oracle修正
+
+远程连接出现问题：
+
+![image](http://cnsyear.com/images/blog/20180710091930528.png)
+
+<!-- more -->
 
 
-C++ 有插入迭代器、流迭代器、反向迭代器、移动迭代器，泛型算法结构有适用的迭代器类别：输入迭代器、输出迭代器、前向迭代器、双向迭代器、随机访问迭代器。
+这个错误网上很多改变策略组方式来修正的方法。但是**家庭版没有“策略组”**，网上看到一个不错的微博，自己测试可以用，转过来记录一下。
 
-<!--more-->
+网上找到方法 但是奈何是 "Win10家庭版" 不能使用这个办法,具体操作可以看最后的引用链接 !!!!
 
-## 再探迭代器
+策略路径：“计算机配置”->“管理模板”->“系统”->“凭据分配”
 
-**迭代器**:
+设置名称： 加密 Oracle 修正
 
- * 插入迭代器
- * 流迭代器
- * 反向迭代器
- * 移动迭代器
+只能换另外一种改注册表 改了半天 终于改好 把详细步骤贴出来。
 
-### 插入迭代器
+1、打开注册表，快捷输入 “regedit”（类似找命令提示符 输入 cmd 一样）
 
-```cpp
-it = t //在it指定的当前位置插入值t。
-*it，++it,it++ //不会做任何事情，都返回it
-```
- * **`back_inserter`**: `push_back`的迭代器
- * **`front_inserter`**: `push_front`的迭代器
- * **`inserter`**: 第二个参数指向给定容器的迭代器
- 
-### 流迭代器
+2、找文件夹 路径：HKLM(缩写)\Software\Microsoft\Windows\CurrentVersion\Policies\System\CredSSP\Parameters
 
-```cpp
-istream_iterator<T> in(is); //in从输入流is读取类型为T的值
-istream_iterator<T> end;    //读取类型为T的值istream_iterator迭代器，表示尾后位置
-in1 == in2  //in1和in2必须读取相同类型
-in1 != in2
-*in //返回从流中读取的值
-in->mem
-++in, in++
-```
+ 注意到System 后就没有了自己创建文件夹就好。
 
-```cpp
-ostream_itertor<T> out(os);
-ostream_iterator<T> out(os, d); 
-out = val
-*out, ++out, out++ //不做任何事
-```
+3、然后再最底部文件夹里面 新建 DWORD（32）位的。
 
-可以为任何定义了输入运算符(>>)的类型创建`istream_iterator`对象，类似的(<<)可以创建`ostream_iterator`对象。
+文件名 “AllowEncryptionOracle” ，值 : 2.
 
-### 反向迭代器
+保存 就可以了 。
 
- > `rbegin`、`rend`、`crbegin`、`crend`
- 
- **反向迭代器需要递减运算符**
- 
- 不可能从一个`forward_list`或一个流迭代器创建反向迭代器。
- 
-## 泛型算法结构
+4、不生效的话重启下试试，我没有重启就可以用了。
 
-**迭代器类别**:
+![image](http://cnsyear.com/images/blog/20180710092205121.png)
 
- * **输入迭代器**：`==` `！=` `++` `*` `->` 不保迭代器状态。
- * **输出迭代器**：`++` `*` 只能赋值一次。
- * **前向迭代器**：输入和输出迭代器的操作，多次读写，多遍扫描。
- * **双向迭代器**：前置和后置递减运算符(`--`)。
- * **随机访问迭代器**：常量时间访问序列，(`<` `<=` `>` `>=` `+` `+=` `-` `-=` `-` `[]`）。
- 
-### 算法形参模式
-
-```cpp
-alg(beg, end, other, args);
-alg(beg, end, dest, other, args);
-alg(beg, end, beg2, other, args);
-alg(beg, end, beg2, end2, other, args);
-```
-
- * 一些算法使用重载形式传递一个谓词
- * _if版本算法
- * 区分拷贝元素的版本和不拷贝的版本
- 
-### 特定容器算法
-
-链表类型`list`和`forward_list`定义了几个成员函数形式的算法：`sort` `merge` `remove` `reverse` `unique`。
-
-```cpp
-lst.merge(lst2)
-lst.merge(lst2,comp)
-lst.remove(val)
-lst.remove_if(pred)
-lst.reverse()
-lst.sort()
-lst.sort(comp)
-lst.unique()
-lst.unique(pred)
-```
-
-**splice成员**:
-
-```cpp
-lst.splice(args)
-lst.splice_after(args)
-```
+[原文链接>>http://www.cnblogs.com/xxaxx/p/9223231.html](http://www.cnblogs.com/xxaxx/p/9223231.html )
