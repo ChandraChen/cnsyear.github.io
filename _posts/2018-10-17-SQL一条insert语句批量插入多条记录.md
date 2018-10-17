@@ -2,9 +2,9 @@
 title: SQL一条insert语句批量插入多条记录
 description: 
 categories:
- - Mybatis
+ - SQL
 tags:
- - Mybatis
+ - SQL
 ---
 
 > SQL一条insert语句批量插入多条记录
