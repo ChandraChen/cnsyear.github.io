@@ -9,7 +9,7 @@ tags: [Springboot]
 
 > 问题
 
-![image](http://blog.cnsyear.com/assets/share/TIM图片20180517180211.jpg?1)
+![image](http://cnsyear.com/images/blog/TIM图片20180517180211.jpg)
 
 > 解决方法
 
