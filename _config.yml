@@ -288,8 +288,10 @@ sidebar:
 #links_title: Links
 #links_layout: block
 #links_layout: inline
-links:
+links:  
   Linux命令大全: http://man.linuxde.net/
+  易百教程: https://www.yiibai.com/
+  菜鸟教程: http://www.runoob.com/
   haley168: http://blog.nobug666.com/
 
 
