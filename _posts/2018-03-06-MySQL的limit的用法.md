@@ -3,7 +3,7 @@ layout: post
 title: MySQL的LIMIT的用法
 subtitle: 
 date: 2018-03-06
-categories: blog
+categories: mysql
 tags: [mysql]
 description: MySQL的LIMIT的用法。
 ---
