@@ -7,27 +7,20 @@ tags:
  - SpringBoot
 ---
 
-# 快速开始SpringBoot应用
+> 快速开始SpringBoot应用
 ## 官方向导搭建boot应用
 1. 地址：[http://start.spring.io/](http://start.spring.io/)
-2. 设置项目属性：
-![图片](https://images-cdn.shimo.im/tjvs23RcQzUqGWBE/image.png!thumbnail)
-
+2. 设置项目属性
 1. 解压，拷贝到工作空间，导入maven项目
 2. 写Controller： HelloController.java
-![图片](https://images-cdn.shimo.im/TL0NYqplfVkoRrTS/image.png!thumbnail)
 3. 启动Spring Boot入口类：DemoApplication
 
 ## 普通maven工程搭建boot应用
 1. 新建一个普通的maven工程，选择quickstart
 
 【注意：Spring boot是web工程，但是我们这里只需要建立quickstart即可，因为spring boot内嵌了servlert容器】
-![图片](https://images-cdn.shimo.im/tjFwEBppd445REun/image.png!thumbnail)
-
-![图片](https://images-cdn.shimo.im/Y9AooVz1vsEQa1Yy/image.png!thumbnail)
 
 1. 查看官方文档：[https://projects.spring.io/spring-boot/](https://projects.spring.io/spring-boot/)  点击quick start
-![图片](https://images-cdn.shimo.im/L2A5cyhFg78Q0pQm/image.png!thumbnail)
 
 1. 选择版本【1.5.10.RELEASE】,建议：**生产环境中选择稳定的版本**
 2. 拷贝依赖的父pom到自己的工程pom文件中：
@@ -78,22 +71,17 @@ tags:
 # 统一父POM管理
 ## 建立boot-parent工程
 好，首先我们建立一个 **boot-parent**的maven工程：
-![图片](https://images-cdn.shimo.im/dcCSyVorCYk5RvD1/image.png!thumbnail)
+
 然后修改pom.xml
 1. **packaging**改为为**pom**格式:
 
 **<packaging>****pom****</packaging>**
 1. 加入dependencyManagement, 同时**去掉version**， 直接使用父pom中的版本即可
-![图片](https://images-cdn.shimo.im/AXvQwGUi5bcoDikd/image.png!thumbnail)
 
 1. 删除无用的源文件，只保留pom.xml
-![图片](https://images-cdn.shimo.im/YNQ5NiHJEKYgvLKb/image.png!thumbnail)
-
 
 1. 修改pom.xml,加入如下内容,从上面获取即可：
-![图片](https://images-cdn.shimo.im/2VwVInSpbRYGBtzO/image.png!thumbnail)
 
-![图片](https://images-cdn.shimo.im/dbSqapyhM14GKUJ0/image.png!thumbnail)
 那么我们要成为一个springboot项目，必须要引入他的父pom对不对：
 于是加入他的父pom:
 **<dependency>**
@@ -107,22 +95,14 @@ tags:
 建立boot-base工程，实现之前的helloworld功能：
 1. 在boot-parent工程上面，建立**maven module**模块工程
 
-![图片](https://images-cdn.shimo.im/3z0vwUxnQrsGAyfS/image.png!thumbnail)
-
-![图片](https://images-cdn.shimo.im/0RZlAi3KwukqyYlW/image.png!thumbnail)
-
 1. 把之前的SampleController.java复制过来，但是会报错，这时候，加入如下内容：
 
 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>**spring-boot-starter-web**</artifactId>
 		</dependency>
-1. 如果报错，如下：
-![图片](https://images-cdn.shimo.im/najuSgdRDcE44eAG/image.png!thumbnail)
-2. 需要修改父pom.xml中内容,**boot-parent**中的pom.xml,加入如下内容：
-![图片](https://images-cdn.shimo.im/c6lfY5t7VZkU4IQl/image.png!thumbnail)
 
-3. 启动SampleController，然后访问：[http://localhost:8080/](http://localhost:8080/)
+2. 启动SampleController，然后访问：[http://localhost:8080/](http://localhost:8080/)
 
 spring boot一个很重要的特点：解决了所有依赖的版本问题
 # spring boot 测试
@@ -134,16 +114,6 @@ spring boot一个很重要的特点：解决了所有依赖的版本问题
 			<scope>**test**</scope>
 		</dependency>
 **注意：加入这个依赖之后，junit包就可以不用了，因为test的starter中包含了junit**
-备注：怎么找到所有的starter：
-![图片](https://images-cdn.shimo.im/ftMwuTS3I1w8OSTx/image.png!thumbnail)
-
-这里面ctrl +f 搜索：starter，就可以看到spring boot中的所有starter
-
-1. 在测试包中建立测试程序类，测试SampleController
-![图片](https://images-cdn.shimo.im/1JID3sBbaqMzqP01/image.png!thumbnail)
-
-1. 编写测试类：
-![图片](https://images-cdn.shimo.im/hAkiJiKvnngnKx6R/image.png!thumbnail)
 
 so easy
 # spring boot 启动注解分析
@@ -265,8 +235,6 @@ random.b=${random.int[1,20]}
 
 至于哪个具体的配置文件会被加载，需要在application.properties文件中通过**spring.profiles.active**属性来设置，其值对应**{profile}**值。
 比如：**spring.profiles.active=dev**就会加载**application-dev.properties**配置文件中的内容
-案例：
-![图片](https://images-cdn.shimo.im/TwKVimoJJk4C02AS/image.png!thumbnail)
 
 在dev, test, prod这三个文件均都设置不同的**server.port端口**属性，如：dev环境设置为8081，test环境设置为8082，prod环境设置为8083
 **application.properties**中设置**spring.profiles.active=dev**，就是说默认以dev环境设置
@@ -286,7 +254,6 @@ Spring Boot默认提供静态资源目录位置需置于classpath下，目录名
 /META-INF/resources
 ```
 案例：在classpath下面创建static目录，并且加入一个图片a.png
-![图片](https://images-cdn.shimo.im/ceIKJ9kkKFw55FS6/image.png!thumbnail)
 
 加入之后，然后不需要重启直接访问：[http://localhost:8081/a.png](http://localhost:8081/a.png)
 修改默认的静态资源目录：**spring.resources.static-locations**
@@ -412,8 +379,7 @@ spring.thymeleaf.view-names=
 ```
 #### 
 2.创建Swagger2配置类
-在spring boot启动类所在包或子包中创建Swagger配置类SwaggerConfig.java，如下：
-![图片](https://images-cdn.shimo.im/UGP8MMLaJGMuvFH2/image.png!thumbnail)
+在spring boot启动类所在包或子包中创建Swagger配置类SwaggerConfig.java，
 
 SwaggerConfig.java内容如下：
 ```
@@ -460,7 +426,7 @@ public class SwaggerController {
 
 4.启动Spring boot，访问Swagger UI界面：[http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
 5.测试API:
-![图片](https://images-cdn.shimo.im/LlTxLlc2jqMKvOlQ/image.png!thumbnail)
+
 集成Swagger2源码成功!
 
 # 统一异常处理
@@ -670,7 +636,7 @@ RabbitMQ其它版本下载地址：[https://www.rabbitmq.com/download.html](http
 
 ## 2.启动RabbitMQ Server
 RabbitMQ Server安装之后，会自动注册为windows服务，并以默认配置启动起来
-![图片](https://images-cdn.shimo.im/KiQ76g4LFlwZvHb3/image.png!thumbnail)
+![image](http://cnsyear.com/images/blog/TIM截图20181026233053.png)
 所以需要启动的话，直接通过服务的方式启动即可。
 
 ## 3.RabbitMQ管理页面
@@ -681,7 +647,7 @@ rabbitmq-plugins enable rabbitmq_management
 ```
 
 出现如下提示，说明web管理插件安装成功
-![图片](https://images-cdn.shimo.im/E9l683BtG7AQcIHe/image.png!thumbnail)
+![image](http://cnsyear.com/images/blog/TIM截图20181026233009.png)
 
 然后重新启动RabbitMQ 服务，打开浏览器并访问：[http://localhost:15672/](http://localhost:15672/)，并使用默认用户guest登录，密码也为guest，即可进入管理界面
 **注意**：必须要重启服务，如果访问管理界面出现不能访问的情况，再等一等刷新，应该是可以的
@@ -696,16 +662,17 @@ rabbitmq-plugins enable rabbitmq_management
 ```
 ### 2.新增管理用户并设置权限
 1.Add a user
-![图片](https://images-cdn.shimo.im/OqnWZyiarVEyi32U/image.png!thumbnail)
+![image](http://cnsyear.com/images/blog/TIM截图20181026233127.png)
 username:springboot
 password:123456
 
 2.切换到springboot用户登陆，在All users中，点击Name为springboot， 进入权限设置页面
 
-![图片](https://images-cdn.shimo.im/SUYRQ3yvRboz0P6l/image.png!thumbnail)
+![image](http://cnsyear.com/images/blog/TIM截图20181026233145.png)
 
 3.在权限设置页面，进入Permissions页面，点击“Set permission"
-![图片](https://images-cdn.shimo.im/cTgUo4SVvaciXHnB/image.png!thumbnail)
+
+![image](http://cnsyear.com/images/blog/TIM截图20181026233205.png)
 
 ### 3.rabbit mq连接配置
 ```
@@ -808,8 +775,6 @@ Logback是log4j框架的作者开发的新一代日志框架，它效率更高�
 ```
 那么， Spring Boot 应用将自动使用 logback 作为应用日志框架， Spring Boot 启动的时候，由 org.springframework.boot.logging.Logging.LoggingApplicationListener 根据情况初始化并使用。
 值得注意的是，默认情况下，Spring Boot 使用 logback 作为应用日志框架。因为 spring-boot-starter 其中包含了 spring-boot-starter-logging，该依赖就是 使用Spring Boot 默认的日志框架 logback
-![图片](https://images-cdn.shimo.im/2646JxOLpIIpuwxX/image.png!thumbnail)
-
 
 【程序中使用】：
 ```
@@ -867,8 +832,6 @@ logging.level.root = info
 在spring-boot-dependencies POMs中搜索**spring-boot-starter-log4j**
 发现Spring boot的父POMs中自己**并没有提供**了这个依赖， 我们在[http://mvnrepository.com](http://mvnrepository.com)
 中央仓库中查找**spring-boot-starter-log4j**
-![图片](https://images-cdn.shimo.im/DJKcJk5s8QgYcw0J/image.png!thumbnail)
-
 
 1.加入pom依赖
 ```
@@ -1085,7 +1048,7 @@ public @interface EnableAutoConfiguration {
 }
 ```
 在@EnableAutoConfiguration注解内使用到了@import注解来完成导入配置的功能，而EnableAutoConfigurationImportSelector内部则是使用了SpringFactoriesLoader.loadFactoryNames方法进行扫描具有META-INF/spring.factories文件的jar包。我们可以先来看下spring-boot-autoconfigure包内的spring.factories文件内容，如下所示：
-![图片](https://images-cdn.shimo.im/ZOl2BmdR6rc0re7M/image.png!thumbnail)
+![image](http://cnsyear.com/images/blog/TIM截图20181026233352.png)
 
 
 可以看到配置的结构形式是Key=>Value形式，多个Value时使用,隔开，那我们在自定义starter内也可以使用这种形式来完成，我们的目的是为了完成自动化配置，所以我们这里Key则是需要使用org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -1110,8 +1073,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.example.Hello
 		</dependency>
 ```
 
-controller引入自定义starter中的service调用业务：
-![图片](https://images-cdn.shimo.im/iWRAVVbPxg0iG2vp/image.png!thumbnail)
+controller引入自定义starter中的service调用业务
 ## 运行测试
 在运行项目之前，我们打开application.properties配置文件开启debug模式，查看自动化配置的输出日志，配置内容如下所示：
 
