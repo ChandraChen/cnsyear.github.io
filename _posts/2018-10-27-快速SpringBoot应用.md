@@ -7,104 +7,48 @@ tags:
  - SpringBoot
 ---
 
-> 快速开始SpringBoot应用
+# 快速开始SpringBoot应用
+
 ## 官方向导搭建boot应用
+
 1. 地址：[http://start.spring.io/](http://start.spring.io/)
 2. 设置项目属性
-1. 解压，拷贝到工作空间，导入maven项目
-2. 写Controller： HelloController.java
-3. 启动Spring Boot入口类：DemoApplication
+3. 解压，拷贝到工作空间，导入maven项目
+4. 写Controller： HelloController.java
+5. 启动Spring Boot入口类：DemoApplication
 
 ## 普通maven工程搭建boot应用
 1. 新建一个普通的maven工程，选择quickstart
 
-【注意：Spring boot是web工程，但是我们这里只需要建立quickstart即可，因为spring boot内嵌了servlert容器】
+	【注意：Spring boot是web工程，但是我们这里只需要建立quickstart即可，因为spring boot内嵌了servlert容器】
 
-1. 查看官方文档：[https://projects.spring.io/spring-boot/](https://projects.spring.io/spring-boot/)  点击quick start
+	1. 查看官方文档：[https://projects.spring.io/spring-boot/](https://projects.spring.io/spring-boot/)  点击quick start
 
-1. 选择版本【1.5.10.RELEASE】,建议：**生产环境中选择稳定的版本**
+	1. 选择版本【1.5.10.RELEASE】,建议：**生产环境中选择稳定的版本**
+	
 2. 拷贝依赖的父pom到自己的工程pom文件中：
-```
-<parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.10.RELEASE</version>
-</parent>
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-</dependencies>
-```
-5.从上面的第一个boot项目的pom中拷贝项目构建的内容到当前工程中（以下内容为每个maven项目都必须要的）：
 
-```
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-</properties>
-```
-
-```
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-    </plugins>
-</build>
-```
-
-6.如果项目出现红叉，选择项目 -- 》右键 --》Maven--》Update Project
-7.拷贝文档中的事例代码**SampleController.java**到工程中
-8.Run as --> Java Application启动SampleController.java
-9.浏览器输入：[http://localhost:8080/](http://localhost:8080/) 即可
-
+	```
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>
+	```
+3.Run as --> Java Application启动SampleController.java
+4.浏览器输入：[http://localhost:8080/](http://localhost:8080/) 即可
 
 当然，除了以上两种方式搭建boot工程，也可以通过其它工具快速生成，例如idea ,  sts，spring boot cli等
 这些工具集成了spring boot特性 ，可以一键生成springboot工程骨架
 
-# Starter POM
-# 统一父POM管理
-## 建立boot-parent工程
-好，首先我们建立一个 **boot-parent**的maven工程：
+<!-- more -->
 
-然后修改pom.xml
-1. **packaging**改为为**pom**格式:
-
-**<packaging>****pom****</packaging>**
-1. 加入dependencyManagement, 同时**去掉version**， 直接使用父pom中的版本即可
-
-1. 删除无用的源文件，只保留pom.xml
-
-1. 修改pom.xml,加入如下内容,从上面获取即可：
-
-那么我们要成为一个springboot项目，必须要引入他的父pom对不对：
-于是加入他的父pom:
-**<dependency>**
-**				<groupId>org.springframework.boot</groupId>**
-**				<artifactId>****spring-boot-parent****</artifactId>**
-**				<version>1.5.10.RELEASE</version>**
-**				**
-**			</dependency>**
-
-## 建立boot-base工程：
-建立boot-base工程，实现之前的helloworld功能：
-1. 在boot-parent工程上面，建立**maven module**模块工程
-
-1. 把之前的SampleController.java复制过来，但是会报错，这时候，加入如下内容：
-
-<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>**spring-boot-starter-web**</artifactId>
-		</dependency>
-
-2. 启动SampleController，然后访问：[http://localhost:8080/](http://localhost:8080/)
-
-spring boot一个很重要的特点：解决了所有依赖的版本问题
 # spring boot 测试
 1. 添加测试支持依赖：spring-boot-starter-test
 
@@ -115,7 +59,6 @@ spring boot一个很重要的特点：解决了所有依赖的版本问题
 		</dependency>
 **注意：加入这个依赖之后，junit包就可以不用了，因为test的starter中包含了junit**
 
-so easy
 # spring boot 启动注解分析
 **1.@EnableAutoConfiguration**：开启自动配置功能
 **@ComponentScan(basePackages={"com.example.boot"}) 包扫描**
@@ -1090,57 +1033,5 @@ debug=true
 
 我们的配置生效了，到目前为止我相信大家已经明白了我们application.properties配置文件为什么可以作为统一配置入口，为什么配置后可以被对应starter所使用
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*标记：可是色彩不浓，回味不永。比起北国的秋来，正象是黄酒之与白干，稀饭之与馍馍，鲈鱼之与大蟹，黄犬之与骆驼。
+——郁达夫 《故都的秋》*
