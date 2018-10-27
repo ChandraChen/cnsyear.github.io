@@ -1,6 +1,6 @@
 ---
 title: 快速开始SpringBoot应用
-description: 快速开始SpringBoot应用
+description: 
 categories:
  - SpringBoot
 tags:
