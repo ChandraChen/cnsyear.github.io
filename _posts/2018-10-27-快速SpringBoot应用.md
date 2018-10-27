@@ -748,35 +748,39 @@ logging.level.root = info
 值得注意的是，日志文件会在 10MB 大小的时候被截断，产生新的日志文件。
 
 ### 集成log4j2
+
 在spring-boot-dependencies POMs中搜索**spring-boot-starter-log4j2**
 发现Spring boot父Pom中自己提供了这个依赖，于是我们加入如下jar依赖：
+
 ```
-		<!-- log4j2 -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter</artifactId>
-		    <exclusions>
-		        <exclusion>
-		            <groupId>org.springframework.boot</groupId>
-		            <artifactId>spring-boot-starter-logging</artifactId>
-		        </exclusion>
-		    </exclusions>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
+	<!-- log4j2 -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter</artifactId>
+	    <exclusions>
+	        <exclusion>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-logging</artifactId>
+	        </exclusion>
+	    </exclusions>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-log4j2</artifactId>
+	</dependency>
 ```
 
 日志使用跟上面logback一样。
 
 
 ### 集成log4j
+
 在spring-boot-dependencies POMs中搜索**spring-boot-starter-log4j**
 发现Spring boot的父POMs中自己**并没有提供**了这个依赖， 我们在[http://mvnrepository.com](http://mvnrepository.com)
 中央仓库中查找**spring-boot-starter-log4j**
 
 1.加入pom依赖
+
 ```
 		<!-- log4j start -->
 		<dependency>
@@ -798,6 +802,7 @@ logging.level.root = info
 ```
 
 1. classpath下增加log4j.properties
+
 ```
 log4j.rootCategory=INFO, stdout, file, errorfile
 log4j.category.com.example.boot=INFO, myFile
@@ -832,6 +837,7 @@ log4j.appender.myFile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %
 ```
 
 3.代码中使用log4j
+
 ```
 import org.apache.log4j.Logger;
 private final Logger logger = Logger.getLogger(xxx.class);
@@ -843,6 +849,7 @@ private final Logger logger = Logger.getLogger(xxx.class);
 在项目开发过程中，经常会涉及页面跳转问题，而且这个页面跳转没有任何业务逻辑过程，只是单纯的路由过程 ( 例如：点击一个按钮跳转到一个页面 ) 
 
 正常的写法是这样的：
+
 ```
 @RequestMapping("/testmvc")
  public String view(){
@@ -851,6 +858,7 @@ private final Logger logger = Logger.getLogger(xxx.class);
 ```
 
 现在只需要这样统一写，**此类必须在启动类所在包或者子包中**：
+
 ```
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter{
@@ -862,6 +870,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 ```
 
 页面：abc.flt 或者 abc.html 
+
 ```
 <html>
 <body>
@@ -881,6 +890,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 
 ## 创建自己的starter项目
 创建普通maven项目，修改pom.xml,增加自动配置依赖
+
 ```
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -893,6 +903,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 ## 配置映射参数实体
 starter是如何读取application.properties或者application.yml配置文件内需要的配置参数的呢？那么接下来我们就看看如何可以获取自定义的配置信息。
 SpringBoot在处理这种事情上早就已经考虑到了，所以提供了一个注解@ConfigurationProperties，该注解可以完成将application.properties配置文件内的有规则的配置参数映射到实体内的field内，不过需要提供setter方法，自定义配置参数实体代码如下所示：
+
 ```
 @ConfigurationProperties(prefix = "hello")
 public class HelloProperties{
@@ -928,6 +939,7 @@ public class HelloService{
 接下来我们开始编写自动配置，这一块是starter的核心部分，配置该部分后在启动项目时才会自动加载配置，当然其中有很多细节性质的配置
 ## 实现自动化配置
 自动化配置其实只是提供实体bean的验证以及初始化，我们先来看看代码：
+
 ```
 @Configuration//开启配置
 @EnableConfigurationProperties(HelloProperties.class)//开启使用映射实体对象
