@@ -2,9 +2,9 @@
 title: Shell脚本学习&SpringBoot启动关闭脚本
 description: 
 categories:
- - Liunx
+ - liunx
 tags:
- - Liunx
+ - liunx
 ---
 
 #### Shell脚本学习&SpringBoot启动关闭脚本
